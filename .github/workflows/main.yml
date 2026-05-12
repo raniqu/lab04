@@ -14,7 +14,9 @@ jobs:
     - uses: actions/checkout@v4
     
     - name: Install dependencies
-      run: sudo apt-get update && sudo apt-get install -y cmake
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y cmake g++
       
     - name: Configure
       run: cmake -H. -B_build -DCMAKE_INSTALL_PREFIX=_install
@@ -25,5 +27,8 @@ jobs:
     - name: Install
       run: cmake --build _build --target install
       
-    - name: Run example
-      run: _build/example1 && echo "Hello from CI"
+    - name: Run example1
+      run: _build/example1
+      
+    - name: Run example2
+      run: _build/example2
